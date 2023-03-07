@@ -1,0 +1,34 @@
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
+import java.util.*;
+class MaxFrequencyFinder {
+    static String s = "abcabcaapqoou";
+    public static void main(String[] args) {
+        
+        MaxFrequencyFinder.maxFrequencyOfCharacter(s);
+    }
+    
+    private static void maxFrequencyOfCharacter(String s){
+        HashMap<Character, Integer> hm= new HashMap();
+        for(int i = 0;i<s.length();i++){
+            Character currChar = s.charAt(i);
+            if(hm.containsKey(currChar)){
+                hm.put(currChar, hm.get(currChar)+1 );
+            }else{
+                hm.put(currChar, 1);
+            }
+        }
+        
+        List<Map.Entry<Character,Integer>> listOfMap =
+         new ArrayList(hm.entrySet());
+        Collections.sort(listOfMap, new Comparator<Map.Entry<Character, Integer>> (){
+            public int compare(Map.Entry<Character, Integer> obj1, Map.Entry<Character, Integer> obj2){
+                return -(obj1.getValue().compareTo(obj2.getValue()));
+            }
+        });
+       
+        Map.Entry<Character,Integer> entry = listOfMap.get(0);
+        Character key = entry.getKey();
+        System.out.println(key);
+    }
+}
