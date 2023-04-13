@@ -1,0 +1,7 @@
+slow = head;
+fast = head;
+
+while(fast.next!=null || fast!=slow) {
+  slow = slow.next;
+  fast = fast.next;
+}
